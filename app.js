@@ -10,7 +10,6 @@ function getComputerChoice(){
 
 // player play choice
 function playerSelection() {
-    return prompt('make a play choice; (1). rock, (2). scissor (3). paper')
 }
 
 // play round
@@ -52,21 +51,22 @@ function playRound(playerSelection, computerSelection){
 // game 
 function game(){
 
-    for(let i = 0; i < 5; i++){
-        let res = playRound(playerSelection(), getComputerChoice())
-
-        console.log(res)
+    if(computerWins === 5){
+        return (`Computer beat humanity again`)
+    }else if(playerWins ===  5){
+        return (`humanity again is the winner`)
     }
-
-    console.log(computerWins)
-    if(computerWins > playerWins){
-        console.log(`Computer beat humanity again`)
-    }else if(computerWins < playerWins){
-        console.log(`humanity again is the winner`)
-    }else{
-        console.log('we understood each other')
-    }
-
 }
 
-game() 
+
+const display = document.querySelector('.display');
+const btns = document.querySelectorAll('.btns');
+const scoreBoard = document.createElement('div')
+
+btns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+        display.innerHTML += `<p>${playRound(e.target.textContent.trim(), getComputerChoice())}</p>`
+        scoreBoard.innerHTML = game() ? game() : ''
+        display.appendChild(scoreBoard)
+    })
+});
