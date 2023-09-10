@@ -68,5 +68,6 @@ btns.forEach((btn) => {
         display.innerHTML += `<p>${playRound(e.target.textContent.trim(), getComputerChoice())}</p>`
         scoreBoard.innerHTML = game() ? game() : ''
         display.appendChild(scoreBoard)
+        
     })
 });
